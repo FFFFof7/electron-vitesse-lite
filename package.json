@@ -1,6 +1,13 @@
 {
   "private": true,
   "packageManager": "pnpm@6.32.3",
+  "keywords": [
+    "electron",
+    "rollup",
+    "vite",
+    "vue3",
+    "vue"
+  ],
   "main": "dist/main/index.cjs",
   "scripts": {
     "dev": "node scripts/watch.mjs",
@@ -8,10 +15,27 @@
     "build": "electron-builder",
     "init": "git config core.hooksPath .git/hooks/ && rm -rf .git/hooks && npx simple-git-hooks",
     "test:e2e": "npx playwright test",
-    "test:e2e:headless": "npx playwright test --headed"
+    "test:e2e:headless": "npx playwright test --headed",
+    "lint": "eslint .",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest"
   },
   "engines": {
     "node": ">=14.17.0"
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "^0.21.1",
+    "@iconify-json/carbon": "^1.1.3",
+    "@unocss/reset": "^0.32.1",
+    "@vueuse/core": "^8.3.1",
+    "eslint": "^8.14.0",
+    "jsdom": "^19.0.0",
+    "unocss": "^0.32.1",
+    "unplugin-auto-import": "^0.7.1",
+    "unplugin-vue-components": "^0.19.3",
+    "vite-plugin-pages": "^0.23.0",
+    "vitest": "^0.10.0",
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@playwright/test": "^1.20.2",
@@ -31,21 +55,7 @@
     "VITE_DEV_SERVER_HOST": "127.0.0.1",
     "VITE_DEV_SERVER_PORT": 3344
   },
-  "keywords": [
-    "electron",
-    "rollup",
-    "vite",
-    "vue3",
-    "vue"
-  ],
-  "dependencies": {
-    "@unocss/reset": "^0.32.1",
-    "@vueuse/core": "^8.3.1",
-    "unocss": "^0.32.1",
-    "unplugin-auto-import": "^0.7.1",
-    "unplugin-vue-components": "^0.19.3",
-    "vite-plugin-pages": "^0.23.0",
-    "vitest": "^0.10.0",
-    "vue-router": "^4.0.14"
+  "eslintConfig": {
+    "extends": "@antfu"
   }
 }

@@ -11,10 +11,8 @@ import resolve from 'vite-plugin-resolve'
 import electron from 'vite-plugin-electron/renderer'
 import pkg from '../../package.json'
 
-
 export default defineConfig({
   root: __dirname,
-  base: './',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
@@ -57,7 +55,9 @@ export default defineConfig({
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
-    Unocss(),
+    Unocss({
+      configFile: path.resolve(__dirname, './unocss.config.ts'),
+    }),
   ],
 
   // https://github.com/vitest-dev/vitest
