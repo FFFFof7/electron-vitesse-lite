@@ -33,6 +33,6 @@
       ]
     },
     "useDefineForClassFields": true,
-    "sourceMap": true,
-  },
+    "sourceMap": true
+  }
 }
