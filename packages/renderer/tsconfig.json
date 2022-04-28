@@ -1,0 +1,38 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "esnext",
+    "target": "es2016",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "strict": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "../../node_modules/vite/client",
+      "../../node_modules/vite-plugin-pages/client"
+    ],
+    "paths": {
+      "~/*": [
+        "src/*"
+      ]
+    },
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+  },
+}
