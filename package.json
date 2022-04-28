@@ -1,19 +1,11 @@
 {
   "private": true,
   "packageManager": "pnpm@6.32.3",
-  "keywords": [
-    "electron",
-    "rollup",
-    "vite",
-    "vue3",
-    "vue"
-  ],
   "main": "dist/main/index.cjs",
   "scripts": {
     "dev": "node scripts/watch.mjs",
     "prebuild": "vue-tsc --noEmit --p packages/renderer/tsconfig.json && node scripts/build.mjs",
     "build": "electron-builder",
-    "init": "git config core.hooksPath .git/hooks/ && rm -rf .git/hooks && npx simple-git-hooks",
     "test:e2e": "npx playwright test",
     "test:e2e:headless": "npx playwright test --headed",
     "lint": "eslint .",
@@ -42,8 +34,6 @@
     "@vitejs/plugin-vue": "^2.3.1",
     "electron": "^18.0.2",
     "electron-builder": "^23.0.3",
-    "nano-staged": "^0.6.0",
-    "simple-git-hooks": "^2.7.0",
     "typescript": "^4.6.3",
     "vite": "^2.9.1",
     "vite-plugin-electron": "^0.4.2",
