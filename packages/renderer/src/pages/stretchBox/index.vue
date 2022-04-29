@@ -12,16 +12,18 @@ const borderEl = $ref<{
 })
 const containerEl = $ref<HTMLDivElement>(null)
 let isMousedown = false
-const startPos = { x: 0, y: 0, direction: '', width: 0 }
+const startPos = { x: 0, y: 0, direction: '', width: 0, height: 0 }
 onMounted(() => {
   for (const key in borderEl) {
     const el = borderEl[key]
     useEventListener(el, 'mousedown', ({ clientX, clientY }) => {
+      const rect = containerEl.getBoundingClientRect()
       isMousedown = true
       startPos.x = clientX
       startPos.y = clientY
       startPos.direction = key
-      startPos.width = containerEl.getBoundingClientRect().width
+      startPos.width = rect.width
+      startPos.height = rect.height
     })
   }
   useEventListener(window, 'mouseup', () => {
@@ -33,8 +35,8 @@ onMounted(() => {
 })
 
 const containerSize = $ref({
-  width: 30,
-  height: 0,
+  width: 100,
+  height: 100,
 })
 const { x, y } = $(useMouse())
 watch(
@@ -44,12 +46,18 @@ watch(
   () => {
     if (!isMousedown)
       return
-    const { x: startX, y: startY, direction, width } = startPos
+    const { x: startX, y: startY, direction, width, height } = startPos
     if (['left', 'right'].includes(direction)) {
       let dx = x - startX
       if (direction === 'left')
         dx = ~dx + 1
       containerSize.width = width + dx
+    }
+    else {
+      let dy = y - startY
+      if (direction === 'top')
+        dy = ~dy + 1
+      containerSize.height = height + dy
     }
   },
 )
@@ -57,7 +65,8 @@ watch(
 </script>
 
 <template>
-  <div class="container" :style="{ width: containerSize.width + 'px' }" ref="containerEl">
+  <div class="container" :style="{ width: containerSize.width + 'px', height: containerSize.height + 'px' }"
+    ref="containerEl">
     <div class="borders">
       <i class="border-top" :ref="(el) => borderEl['top'] = el"></i>
       <i class="border-right" :ref="(el) => borderEl['right'] = el"></i>
