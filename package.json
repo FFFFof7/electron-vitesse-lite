@@ -22,6 +22,7 @@
     "@vueuse/core": "^8.3.1",
     "eslint": "^8.14.0",
     "jsdom": "^19.0.0",
+    "less": "^4.1.2",
     "unocss": "^0.32.1",
     "unplugin-auto-import": "^0.7.1",
     "unplugin-vue-components": "^0.19.3",

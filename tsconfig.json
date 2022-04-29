@@ -1,4 +1,5 @@
 {
+  "exclude": ["./packages/*"],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
