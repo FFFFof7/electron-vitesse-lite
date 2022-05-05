@@ -13,6 +13,7 @@ import pkg from '../../package.json'
 
 export default defineConfig({
   root: __dirname,
+  envDir: '../../env',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,

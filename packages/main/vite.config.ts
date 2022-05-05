@@ -4,6 +4,7 @@ import pkg from '../../package.json'
 
 export default defineConfig({
   root: __dirname,
+  envDir: '../../env',
   build: {
     outDir: '../../dist/main',
     emptyOutDir: true,

@@ -1,6 +1,7 @@
 import { spawn } from 'child_process'
 import { build, createServer } from 'vite'
 import electron from 'electron'
+import parseEnv from './utils/parseEnv.mjs'
 
 const query = new URLSearchParams(import.meta.url.split('?')[1])
 const debug = query.has('debug')
@@ -8,16 +9,11 @@ const debug = query.has('debug')
 /**
  * @type {(server: import('vite').ViteDevServer) => Promise<import('rollup').RollupWatcher>}
  */
-function watchMain(server) {
+function watchMain() {
   /**
    * @type {import('child_process').ChildProcessWithoutNullStreams | null}
    */
   let electronProcess = null
-  const address = server.httpServer.address()
-  const env = Object.assign(process.env, {
-    VITE_DEV_SERVER_HOST: address.address,
-    VITE_DEV_SERVER_PORT: address.port,
-  })
   /**
    * @type {import('vite').Plugin}
    */
@@ -25,7 +21,7 @@ function watchMain(server) {
     name: 'electron-main-watcher',
     writeBundle() {
       electronProcess && electronProcess.kill()
-      electronProcess = spawn(electron, ['.'], { stdio: 'inherit', env })
+      electronProcess = spawn(electron, ['.'], { stdio: 'inherit', env: parseEnv('development') })
     },
   }
 
