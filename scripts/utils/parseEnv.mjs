@@ -1,9 +1,6 @@
 import path from 'path'
-import dotenv from 'dotenv'
+import { loadEnv } from 'vite'
 export default function parseEnv(mode) {
-  const envFilePath = path.resolve(process.cwd(), './env/.env')
-  const modeEnvFilePath = path.join(process.cwd(), `./env/.env.${mode}`)
-  const { parsed: env } = dotenv.config({ path: envFilePath })
-  const { parsed: modeEnv } = dotenv.config({ path: modeEnvFilePath })
-  return { ...process.env, ...env, ...modeEnv }
+  const envDir = path.resolve(process.cwd(), './env')
+  return loadEnv(mode, envDir, [''])
 }
