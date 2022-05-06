@@ -4,12 +4,15 @@
   "main": "dist/main/index.cjs",
   "scripts": {
     "dev": "node scripts/watch.mjs",
+    "typecheck:main": "tsc --noEmit -p ./packages/main",
+    "typecheck:preload": "tsc --noEmit -p ./packages/preload",
+    "typecheck:renderer": "tsc --noEmit -p ./packages/renderer",
+    "typecheck": "npm run typecheck:main && npm run typecheck:preload && npm run typecheck:renderer",
     "prebuild": "vue-tsc --noEmit --p packages/renderer/tsconfig.json && node scripts/build.mjs",
     "build": "electron-builder",
     "test:e2e": "npx playwright test",
     "test:e2e:headless": "npx playwright test --headed",
     "lint": "eslint .",
-    "typecheck": "vue-tsc --noEmit",
     "test": "vitest"
   },
   "engines": {
