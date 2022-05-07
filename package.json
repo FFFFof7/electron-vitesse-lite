@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "node scripts/watch.mjs",
     "typecheck": "npm run typecheck:main && npm run typecheck:preload && npm run typecheck:renderer",
-    "typecheck:main": "tsc --noEmit -p ./packages/main",
-    "typecheck:preload": "tsc --noEmit -p ./packages/preload",
-    "typecheck:renderer": "tsc --noEmit -p ./packages/renderer",
+    "typecheck:main": "vue-tsc --noEmit -project ./packages/main",
+    "typecheck:preload": "vue-tsc --noEmit -project ./packages/preload",
+    "typecheck:renderer": "vue-tsc --noEmit -project ./packages/renderer",
     "test": "vitest",
     "test:main": "vitest run --mode=main",
     "test:preload": "vitest run --mode=preload",
