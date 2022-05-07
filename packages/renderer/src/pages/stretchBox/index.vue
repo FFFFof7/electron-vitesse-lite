@@ -1,22 +1,22 @@
 <script setup lang="ts">
 const borderEl = $ref<{
-  top: HTMLDivElement
-  right: HTMLDivElement
-  bottom: HTMLDivElement
-  left: HTMLDivElement
+  top?: HTMLDivElement
+  right?: HTMLDivElement
+  bottom?: HTMLDivElement
+  left?: HTMLDivElement
 }>({
-  top: null,
-  right: null,
-  bottom: null,
-  left: null,
+  top: undefined,
+  right: undefined,
+  bottom: undefined,
+  left: undefined,
 })
-const containerEl = $ref<HTMLDivElement>(null)
+const containerEl = $ref<HTMLDivElement>(undefined)
 let isMousedown = false
 const startPos = { x: 0, y: 0, direction: '', width: 0, height: 0 }
 onMounted(() => {
   for (const key in borderEl) {
-    const el = borderEl[key]
-    useEventListener(el, 'mousedown', ({ clientX, clientY }) => {
+    const el = borderEl[key as 'top' | 'right' | 'bottom' | 'left']
+    useEventListener(el, 'mousedown', ({ clientX, clientY }: MouseEvent) => {
       const rect = containerEl.getBoundingClientRect()
       isMousedown = true
       startPos.x = clientX
