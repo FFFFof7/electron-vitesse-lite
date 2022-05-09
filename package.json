@@ -1,6 +1,9 @@
 {
+  "name": "electron-vite-vue",
+  "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@6.32.3",
+  "author": "FFFFof fhm011101@126.com",
   "main": "dist/main/index.cjs",
   "scripts": {
     "dev": "node scripts/watch.mjs",
@@ -8,12 +11,13 @@
     "typecheck:main": "vue-tsc --noEmit -project ./packages/main",
     "typecheck:preload": "vue-tsc --noEmit -project ./packages/preload",
     "typecheck:renderer": "vue-tsc --noEmit -project ./packages/renderer",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:main": "vitest run --mode=main",
     "test:preload": "vitest run --mode=preload",
     "test:renderer": "vitest run --mode=renderer",
-    "prebuild": "npm run typecheck && node scripts/build.mjs",
-    "build": "electron-builder",
+    "prebuild": "npm run typecheck && npm run test && node scripts/build.mjs",
+    "build": "npm run prebuild && electron-builder",
     "lint": "eslint ."
   },
   "engines": {
@@ -27,6 +31,7 @@
     "c8": "^7.11.2",
     "eslint": "^8.14.0",
     "jsdom": "^19.0.0",
+    "less": "^4.1.2",
     "unocss": "^0.32.1",
     "unplugin-auto-import": "^0.7.1",
     "unplugin-vue-components": "^0.19.3",
