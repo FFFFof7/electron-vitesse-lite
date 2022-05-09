@@ -65,13 +65,15 @@ watch(
 </script>
 
 <template>
-  <div class="container" :style="{ width: containerSize.width + 'px', height: containerSize.height + 'px' }"
-    ref="containerEl">
+  <div
+    ref="containerEl" class="container"
+    :style="{ width: containerSize.width + 'px', height: containerSize.height + 'px' }"
+  >
     <div class="borders">
-      <i class="border-top" :ref="(el) => borderEl['top'] = el"></i>
-      <i class="border-right" :ref="(el) => borderEl['right'] = el"></i>
-      <i class="border-bottom" :ref="(el) => borderEl['bottom'] = el"></i>
-      <i class="border-left" :ref="(el) => borderEl['left'] = el"></i>
+      <i :ref="(el) => borderEl['top'] = el" class="border-top" />
+      <i :ref="(el) => borderEl['right'] = el" class="border-right" />
+      <i :ref="(el) => borderEl['bottom'] = el" class="border-bottom" />
+      <i :ref="(el) => borderEl['left'] = el" class="border-left" />
     </div>
   </div>
 </template>
